@@ -1,0 +1,15 @@
+{
+  "checking": "正在确认直播状态",
+  "more": "… 另有 %d 场直播",
+  "offline": "主播们正在赶来的路上",
+  "online": "当前直播一览",
+  "updated": "更新于",
+  "started": "始于",
+  "live": "%s 正在直播",
+  "stats": "时长 %s · 观众 %d · 码率 %.1f Mbps",
+  "unavailable": "直播状态暂不可用",
+  "stale": "直播数据未完整更新，保留上次状态。\n最后成功获取：%s",
+  "never": "尚未成功获取",
+  "failure": "直播状态 API 暂不可用（连续失败 %d 次）：%s",
+  "recovered": "直播状态 API 已恢复，中断约 %d 秒，失败 %d 次。"
+}

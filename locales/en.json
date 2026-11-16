@@ -1,0 +1,15 @@
+{
+  "checking": "Checking stream activity",
+  "more": "… and %d more streams",
+  "offline": "The next stream is on its way",
+  "online": "Live now",
+  "updated": "Updated",
+  "started": "Started",
+  "live": "%s is live",
+  "stats": "Duration %s · Viewers %d · Bitrate %.1f Mbps",
+  "unavailable": "Stream status unavailable",
+  "stale": "Stream data could not be fully refreshed. Showing the last known state.\nLast successful update: %s",
+  "never": "No successful update yet",
+  "failure": "Stream status API unavailable (%d consecutive failures): %s",
+  "recovered": "Stream status API recovered after approximately %ds (%d failed requests)."
+}

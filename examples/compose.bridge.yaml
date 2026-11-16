@@ -1,0 +1,15 @@
+# Add this service to an existing bridge-network Broadcast Box Compose stack.
+# Both services must share a network; broadcast-box is the existing service name.
+services:
+  stream-notifier:
+    image: ghcr.io/pharrio/stream-notifier:latest
+    restart: unless-stopped
+    environment:
+      DISCORD_TOKEN: "REPLACE_WITH_BOT_TOKEN"
+      CHANNEL_IDS: "REPLACE_WITH_CHANNEL_ID"
+      BROADCAST_BOX_PUBLIC_URL: "https://stream.example.com"
+      BROADCAST_BOX_API_URL: "http://broadcast-box:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true

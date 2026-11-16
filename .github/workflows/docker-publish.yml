@@ -1,0 +1,55 @@
+name: Build and publish Docker image
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Image metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch
+            type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: VERSION=${{ github.sha }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Verify published binary architectures and native startup
+        run: |
+          image="ghcr.io/${GITHUB_REPOSITORY,,}:sha-${GITHUB_SHA::7}"
+          tmp="$(mktemp -d)"
+          for arch in amd64 arm64; do
+            docker pull --platform "linux/$arch" "$image"
+            container="$(docker create --platform "linux/$arch" "$image" -version)"
+            docker cp "$container:/notifier" "$tmp/notifier-$arch"
+            docker rm "$container"
+            python3 -c 'import pathlib,struct,sys; data=pathlib.Path(sys.argv[2]).read_bytes(); expected={"amd64":62,"arm64":183}[sys.argv[1]]; assert data[:4]==b"\x7fELF" and struct.unpack("<H",data[18:20])[0]==expected, "wrong executable architecture"' "$arch" "$tmp/notifier-$arch"
+          done
+          docker run --rm --platform linux/amd64 --network none "$image" -version

@@ -1,0 +1,15 @@
+# Add this service to the official Broadcast Box host-network Compose stack.
+services:
+  stream-notifier:
+    image: ghcr.io/pharrio/stream-notifier:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DISCORD_TOKEN: "REPLACE_WITH_BOT_TOKEN"
+      CHANNEL_IDS: "REPLACE_WITH_CHANNEL_ID"
+      BROADCAST_BOX_PUBLIC_URL: "https://stream.example.com"
+      BROADCAST_BOX_API_URL: "http://127.0.0.1:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
