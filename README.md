@@ -23,8 +23,7 @@ A lightweight notifier written in Go and deployed with Docker.
 3. Choose a text channel and ensure the bot has those permissions there.
    Enable Discord's **Developer Mode**, then right-click the channel to copy its ID.
 
-Privileged Gateway Intents can remain disabled. For a read-only notification channel,
-deny **Send Messages** to ordinary members and allow the bot's role.
+For a read-only notification channel, deny **Send Messages** to ordinary members and allow the bot's role.
 
 ## Deploy
 
