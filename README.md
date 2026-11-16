@@ -1,6 +1,6 @@
 # Broadcast Box Stream Notifier
 
-Bring your [Broadcast Box](https://github.com/Glimesh/broadcast-box) streams to Discord.
+Notify your [Broadcast Box](https://github.com/Glimesh/broadcast-box) streams on Discord.
 A lightweight notifier written in Go and deployed with Docker.
 
 - A live dashboard with clickable links to streams.
