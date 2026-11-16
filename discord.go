@@ -235,9 +235,8 @@ func (d *Discord) Edit(ctx context.Context, channel, id string, e *discordgo.Mes
 	embeds := []*discordgo.MessageEmbed{&prepared}
 	empty := ""
 	components := []discordgo.MessageComponent{}
-	attachments := []*discordgo.MessageAttachment{}
 	_, err := discordCall(d, ctx, func(c context.Context) (*discordgo.Message, error) {
-		return d.Session.ChannelMessageEditComplex(&discordgo.MessageEdit{ID: id, Channel: channel, Content: &empty, Embeds: &embeds, Components: &components, Attachments: &attachments, AllowedMentions: &discordgo.MessageAllowedMentions{}}, discordgo.WithContext(c))
+		return d.Session.ChannelMessageEditComplex(&discordgo.MessageEdit{ID: id, Channel: channel, Content: &empty, Embeds: &embeds, Components: &components, AllowedMentions: &discordgo.MessageAllowedMentions{}}, discordgo.WithContext(c))
 	})
 	return discordError(err)
 }
