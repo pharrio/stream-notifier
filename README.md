@@ -9,7 +9,7 @@ A lightweight notifier written in Go and deployed with Docker.
 - Existing cards recovered after restarts.
 - English and Simplified Chinese support.
 
-<p align="center">
+<p align="left">
   <img src="assets/discord-preview.png" alt="Discord dashboard listing a live Broadcast Box stream, followed by its notification card with duration, viewers, and bitrate" width="580">
 </p>
 
