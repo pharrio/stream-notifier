@@ -71,13 +71,6 @@ Adjust the hostname and port to match your installation. Keep
 `BROADCAST_BOX_PUBLIC_URL` set to the address your viewers use.
 Internal API access is useful when the public site sits behind a login proxy.
 
-To add the notifier alongside the official Broadcast Box Compose without restarting
-the existing services, save the host-network example as `compose.notifier.yaml`:
-
-```sh
-docker compose -f docker-compose.yaml -f compose.notifier.yaml up -d --no-deps stream-notifier
-```
-
 ## Settings
 
 Set these in the service's `environment` section. Only the first three are required.
@@ -92,9 +85,6 @@ Set these in the service's `environment` section. Only the first three are requi
 | `CHECK_INTERVAL_SECONDS` | `10` | Update interval, from 5 to 3600 seconds |
 | `LOG_CHANNEL_ID` | Disabled | Separate channel for API failure and recovery notices |
 | `DASHBOARD_THUMBNAIL_URL` | Official logo | Custom dashboard image URL |
-
-For Chinese, add `LANGUAGE: "zh-CN"`. Use base URLs without `/api/status`.
-Keep your Compose file private because it contains the bot token.
 
 ## Update
 
