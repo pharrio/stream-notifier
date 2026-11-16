@@ -1,5 +1,7 @@
 .git
 .github
+assets
+README.md
 .env
 .env.*
 bin
